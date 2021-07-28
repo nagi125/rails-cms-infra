@@ -17,3 +17,8 @@ variable "domain" {
   type = string
   default = "api.nagi-dev.jp"
 }
+
+module "iam" {
+  source = "./iam"
+  app_name = var.app_name
+}
