@@ -3,6 +3,18 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
+variable "DB_NAME" {
+  type = string
+}
+
+variable "DB_MASTER_NAME" {
+  type = string
+}
+
+variable "DB_MASTER_PASS" {
+  type = string
+}
+
 variable "app_name" {
   type = string
   default = "rails-cms-api"
@@ -51,4 +63,17 @@ module "elb" {
   zone              = var.zone
   domain            = var.domain
   acm_id            = module.acm.acm_id
+}
+
+module "rds" {
+  source = "./rds"
+
+  app_name = var.app_name
+
+  vpc_id     = module.network.vpc_id
+  private_subnet_ids = module.network.private_subnet_ids
+
+  database_name   = var.DB_NAME
+  master_username = var.DB_MASTER_NAME
+  master_password = var.DB_MASTER_PASS
 }
