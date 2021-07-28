@@ -22,3 +22,14 @@ module "iam" {
   source = "./iam"
   app_name = var.app_name
 }
+
+variable "azs" {
+  type = list(string)
+  default = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"]
+}
+
+module "network" {
+  source   = "./network"
+  app_name = var.app_name
+  azs      = var.azs
+}
