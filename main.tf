@@ -77,3 +77,8 @@ module "rds" {
   master_username = var.DB_MASTER_NAME
   master_password = var.DB_MASTER_PASS
 }
+
+module "ecs_cluster" {
+  source = "./ecs_cluster"
+  app_name = var.app_name
+}

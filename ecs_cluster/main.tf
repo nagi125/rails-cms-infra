@@ -1,0 +1,16 @@
+variable "app_name" {
+  type = string
+}
+
+resource "aws_ecs_cluster" "this" {
+  name = var.app_name
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
+}
+
+output "cluster_name" {
+  value = aws_ecs_cluster.this.name
+}
