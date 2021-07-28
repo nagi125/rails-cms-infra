@@ -82,3 +82,10 @@ module "ecs_cluster" {
   source = "./ecs_cluster"
   app_name = var.app_name
 }
+
+module ses {
+  source = "./ses"
+
+  zone   = var.zone
+  domain = var.domain
+}
