@@ -33,3 +33,10 @@ module "network" {
   app_name = var.app_name
   azs      = var.azs
 }
+
+module "acm" {
+  source   = "./acm"
+  app_name = var.app_name
+  zone     = var.zone
+  domain   = var.domain
+}
